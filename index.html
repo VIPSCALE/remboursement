@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Océane ZT - Bienvenue</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Police romantique -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Quicksand", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            background: radial-gradient(circle at top, #ffdde1 0%, #ff5774 45%, #5c0015 100%);
+            color: #fff;
+        }
+
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.08), transparent 60%);
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            width: 90%;
+            padding: 2.5rem 2rem;
+            background: rgba(0, 0, 0, 0.30);
+            border-radius: 24px;
+            box-shadow:
+                0 20px 40px rgba(0, 0, 0, 0.45),
+                0 0 0 1px rgba(255, 255, 255, 0.12);
+            text-align: center;
+            backdrop-filter: blur(16px);
+        }
+
+        .title {
+            font-family: "Playfair Display", serif;
+            font-size: 2.4rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            opacity: 0.8;
+            margin-bottom: 1.8rem;
+        }
+
+        .message {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2.2rem;
+            opacity: 0.9;
+        }
+
+        .heart {
+            font-size: 1.4rem;
+            margin: 0 0.2rem;
+        }
+
+        .btn-wrapper {
+            display: flex;
+            justify-content: center;
+        }
+
+        .vip-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.9rem 2.5rem;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #ff8396, #ff1e4d);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.45);
+            color: #fff;
+            transition:
+                transform 0.15s ease-out,
+                box-shadow 0.15s ease-out,
+                background 0.25s ease-out;
+        }
+
+        .vip-btn span {
+            font-size: 1.1rem;
+        }
+
+        .vip-btn:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                0 18px 30px rgba(0, 0, 0, 0.6),
+                0 0 15px rgba(255, 115, 140, 0.7);
+            background: linear-gradient(135deg, #ffc0cb, #ff2145);
+        }
+
+        .vip-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.55);
+        }
+
+        .vip-btn .dot {
+            font-size: 1.3rem;
+        }
+
+        .footer-note {
+            margin-top: 1.6rem;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            .title {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                letter-spacing: 0.22em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+
+    <main class="container">
+        <h1 class="title">Océane ZT</h1>
+        <p class="subtitle">Page de bienvenue</p>
+
+        <p class="message">
+            Bienvenue dans l’univers d’Océane ZT
+            <span class="heart">♥</span><br>
+            Installe-toi, respire un peu, et laisse la magie opérer.<br>
+            Un espace VIP t’attend, réservé aux moments les plus
+            <strong>intenses</strong> et les plus <strong>privilégiés</strong>.
+        </p>
+
+        <div class="btn-wrapper">
+            <!-- Change le href si tu veux une autre page (par exemple vip.html) -->
+            <a href="vip.html" class="vip-btn">
+                <span>Accédez au VIP</span>
+                <span class="dot">•</span>
+            </a>
+        </div>
+
+        <p class="footer-note">
+            Accès réservé — merci de respecter la confidentialité de cet espace.
+        </p>
+    </main>
+</body>
+</html>

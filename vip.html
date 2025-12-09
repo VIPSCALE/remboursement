@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Océane ZT - Espace VIP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Police romantique -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Quicksand", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            background: radial-gradient(circle at top, #ffdde1 0%, #ff5774 45%, #5c0015 100%);
+            color: #fff;
+        }
+
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.08), transparent 60%);
+            pointer-events: none;
+        }
+
+        .page {
+            position: relative;
+            z-index: 1;
+            max-width: 980px;
+            width: 94%;
+            padding: 2.5rem 2rem;
+            background: rgba(0, 0, 0, 0.30);
+            border-radius: 24px;
+            box-shadow:
+                0 20px 40px rgba(0, 0, 0, 0.45),
+                0 0 0 1px rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(16px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2.2rem;
+        }
+
+        .title {
+            font-family: "Playfair Display", serif;
+            font-size: 2.2rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            letter-spacing: 0.26em;
+            text-transform: uppercase;
+            opacity: 0.8;
+            margin-top: 0.4rem;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: minmax(0, 2fr) minmax(0, 1.1fr);
+            gap: 1.8rem;
+        }
+
+        .vip-box {
+            background: radial-gradient(circle at top left, rgba(255,255,255,0.12), transparent 55%);
+            border-radius: 18px;
+            padding: 1.8rem 1.6rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.45);
+        }
+
+        .vip-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            background: rgba(255, 255, 255, 0.08);
+            margin-bottom: 0.9rem;
+        }
+
+        .vip-tag span {
+            font-size: 1rem;
+        }
+
+        .vip-title-line {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .vip-price {
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .vip-price strong {
+            font-family: "Playfair Display", serif;
+            font-size: 1.3rem;
+        }
+
+        .vip-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            font-size: 0.98rem;
+            line-height: 1.7;
+        }
+
+        .vip-list li {
+            margin-bottom: 0.4rem;
+        }
+
+        .vip-list li::before {
+            content: "✧";
+            margin-right: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .vip-note {
+            font-size: 0.9rem;
+            opacity: 0.85;
+            margin-bottom: 1.8rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.8rem 2.2rem;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #ff8396, #ff1e4d);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.45);
+            color: #fff;
+            transition:
+                transform 0.15s ease-out,
+                box-shadow 0.15s ease-out,
+                background 0.25s ease-out;
+            white-space: nowrap;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                0 18px 30px rgba(0, 0, 0, 0.6),
+                0 0 15px rgba(255, 115, 140, 0.7);
+            background: linear-gradient(135deg, #ffc0cb, #ff2145);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.55);
+        }
+
+        .btn-dot {
+            font-size: 1.3rem;
+        }
+
+        /* Carte live */
+        .live-card {
+            background: rgba(0, 0, 0, 0.55);
+            border-radius: 18px;
+            padding: 1.6rem 1.4rem;
+            box-shadow:
+                0 14px 28px rgba(0,0,0,0.6),
+                0 0 0 1px rgba(255,255,255,0.12);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100%;
+        }
+
+        .live-header {
+            margin-bottom: 1.2rem;
+        }
+
+        .live-title {
+            font-family: "Playfair Display", serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.25rem 0.7rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .live-main-text {
+            font-size: 0.96rem;
+            line-height: 1.6;
+            margin-bottom: 0.9rem;
+            opacity: 0.92;
+        }
+
+        .live-meta {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-bottom: 1.2rem;
+        }
+
+        .live-meta span {
+            display: block;
+        }
+
+        .live-footer {
+            margin-top: auto;
+        }
+
+        .live-price {
+            font-size: 1rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .live-price strong {
+            font-family: "Playfair Display", serif;
+            font-size: 1.2rem;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.65);
+            box-shadow: none;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.08);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.55);
+        }
+
+        @media (max-width: 780px) {
+            .page {
+                padding: 2rem 1.4rem;
+            }
+
+            .content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+
+    <main class="page">
+        <header class="header">
+            <h1 class="title">Océane ZT</h1>
+            <p class="subtitle">Espace vip privé</p>
+        </header>
+
+        <section class="content">
+            <!-- Bloc VIP principal -->
+            <div class="vip-box">
+                <div class="vip-tag">
+                    <span>♕</span> VIP À VIE
+                </div>
+
+                <p class="vip-title-line">
+                    Ton accès le plus intime à Océane ZT 💋
+                </p>
+
+                <p class="vip-price">
+                    Accès VIP <strong>à vie</strong> pour seulement <strong>35€</strong> — une fois, et tu es avec moi pour toujours. 🔥
+                </p>
+
+                <ul class="vip-list">
+                    <li>Accès à des lives privés & moments très chauds, réservés aux membres 💞</li>
+                    <li>Vidéos exclusives & contenus intimes que tu ne verras nulle part ailleurs</li>
+                    <li>Nouveau contenu chaque soir pour t’accompagner jusqu’au bout de la nuit 🌙</li>
+                    <li>Messages et surprises privilégiées pour mes VIP les plus fidèles</li>
+                    <li>Une ambiance luxe, respectueuse… mais terriblement excitante 😈</li>
+                </ul>
+
+                <p class="vip-note">
+                    En rejoignant mon VIP, tu entres dans un espace confidentiel, pensé pour le plaisir, la complicité
+                    et la sensualité, toujours dans le respect. Tu ne regarderas plus tes soirées de la même façon. ✨
+                </p>
+
+                <a href="pagep.html" class="btn">
+                    <span>Accéder au VIP</span>
+                    <span class="btn-dot">•</span>
+                </a>
+            </div>
+
+            <!-- Carte LIVE à droite -->
+            <aside class="live-card">
+                <div>
+                    <div class="live-header">
+                        <h2 class="live-title">Live du soir 🔥</h2>
+                        <div class="live-badge">
+                            <span>LIVE PRIVÉ</span>
+                        </div>
+                    </div>
+
+                    <p class="live-main-text">
+                        Tous les soirs, retrouve-moi en <strong>live privé</strong> pour un moment
+                        très chaud, complice et sans filtre… juste toi et moi, dans une ambiance
+                        intimement provocante. 😏
+                    </p>
+
+                    <div class="live-meta">
+                        <span>⏱ Environ 1h de live chaque soir</span>
+                        <span>💌 Interaction en direct, regard dans les yeux et tension qui monte…</span>
+                        <span>⚠️ Places limitées, les plus rapides sont les plus gâtés</span>
+                    </div>
+                </div>
+
+                <div class="live-footer">
+                    <p class="live-price">
+                        Live du soir à partir de <strong>2€</strong> — viens vite prendre ta place avant qu’il ne soit trop tard. 💣
+                    </p>
+
+                    <a href="pagel.html" class="btn btn-secondary">
+                        <span>Prendre ta place</span>
+                    </a>
+                </div>
+            </aside>
+        </section>
+    </main>
+</body>
+</html>
